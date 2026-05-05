@@ -4,7 +4,13 @@ from .models import Batch
 from datetime import date
 
 def home(request):
-    return render(request, 'core/verify.html')
+    code = request.GET.get('code')
+
+    if code:
+        return verify_batch(request, code)
+
+    return render(request, 'core/home.html')
+
 
 def verify_batch(request, code):
     try:
