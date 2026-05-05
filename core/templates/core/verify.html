@@ -35,22 +35,17 @@
 <body>
 
 <div class="card">
-    {% if valid %}
-        
-        {% if expired %}
-            <h2 class="warning">⚠️ Medicine Expired</h2>
-        {% else %}
-            <h2 class="valid">✅ Medicine Verified</h2>
-        {% endif %}
+    {{% if valid %}
+        <h2>✅ Product is Genuine</h2>
+        <p>Batch Code: {{ batch.batch_code }}</p>
+        <p>Expiry Date: {{ batch.exp_date }}</p>
 
-        <p><b>Product:</b> {{ batch.product.name }}</p>
-        <p><b>Manufacturer:</b> {{ batch.product.manufacturer }}</p>
-        <p><b>Batch Code:</b> {{ batch.batch_code }}</p>
-        <p><b>Expiry Date:</b> {{ batch.exp_date }}</p>
+    {% if expired %}
+        <p style="color:red;">⚠️ Product is Expired</p>
+    {% endif %}
 
     {% else %}
-        <h2 class="invalid">❌ Invalid or Fake Product</h2>
-        <p>Please check the QR code or contact the manufacturer.</p>
+        <h2 style="color:red;">❌ Invalid or Fake Product</h2>
     {% endif %}
 </div>
 
