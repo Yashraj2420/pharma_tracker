@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicine Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+        .valid {
+            color: #22c55e;
+        }
+        .invalid {
+            color: #ef4444;
+        }
+        .warning {
+            color: #facc15;
+        }
+        p {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    {% if valid %}
+        
+        {% if expired %}
+            <h2 class="warning">⚠️ Medicine Expired</h2>
+        {% else %}
+            <h2 class="valid">✅ Medicine Verified</h2>
+        {% endif %}
+
+        <p><b>Product:</b> {{ batch.product.name }}</p>
+        <p><b>Manufacturer:</b> {{ batch.product.manufacturer }}</p>
+        <p><b>Batch Code:</b> {{ batch.batch_code }}</p>
+        <p><b>Expiry Date:</b> {{ batch.exp_date }}</p>
+
+    {% else %}
+        <h2 class="invalid">❌ Invalid or Fake Product</h2>
+        <p>Please check the QR code or contact the manufacturer.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
