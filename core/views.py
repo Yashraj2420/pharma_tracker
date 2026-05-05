@@ -4,7 +4,7 @@ from .models import Batch
 from datetime import date
 
 def home(request):
-    return HttpResponse("Welcome to Pharma Tracker 🚀")
+    return render(request, 'core/verify.html')
 
 def verify_batch(request, code):
     try:
