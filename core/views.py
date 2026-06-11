@@ -153,3 +153,5 @@ def seed_demo_data(request):
         
 
     return HttpResponse("Demo products, batches, and shipments restored successfully.")
+def test_url(request):
+    return HttpResponse("URL is working")
