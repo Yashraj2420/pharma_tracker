@@ -140,9 +140,10 @@ def seed_demo_data(request):
         )
 
         Shipment.objects.get_or_create(
-            from_location=item["from_location"],
-            to_location=item["to_location"],
-            status=item["status"],
-        )
+    from_location=item["from_location"],
+    to_location=item["to_location"],
+    status=f'{item["batch_code"]} - {item["status"]}',
+)
+        
 
     return HttpResponse("Demo products, batches, and shipments restored successfully.")
