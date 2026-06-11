@@ -1,3 +1,6 @@
+import qrcode
+from io import BytesIO
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Product, Batch, Shipment
@@ -10,6 +13,15 @@ def home(request):
         return verify_batch(request, code)
 
     return render(request, 'core/home.html')
+
+def qr_code(request, code):
+    qr_url = f"https://pharma-tracker-qprq.onrender.com/verify/{code}/"
+
+    img = qrcode.make(qr_url)
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+
+    return HttpResponse(buffer.getvalue(), content_type="image/png")
 
 
 def verify_batch(request, code):
