@@ -17,13 +17,11 @@ def verify_batch(request, code):
         batch = Batch.objects.get(batch_code=code.strip())
 
         is_expired = batch.exp_date < date.today()
-        shipment = Shipment.objects.filter(batch=batch).last()
 
         return render(request, 'core/verify.html', {
             'batch': batch,
             'valid': True,
             'expired': is_expired,
-            'shipment': shipment
         })
 
     except Batch.DoesNotExist:

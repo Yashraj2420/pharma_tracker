@@ -40,7 +40,6 @@ class Batch(models.Model):
 
 
 class Shipment(models.Model):
-    batch = models.ForeignKey(Batch, on_delete=models.CASCADE, null=True, blank=True)
     from_location = models.CharField(max_length=100)
     to_location = models.CharField(max_length=100)
     status = models.CharField(max_length=50)
