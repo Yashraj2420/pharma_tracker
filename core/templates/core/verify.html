@@ -47,6 +47,13 @@
     {% else %}
         <h2 style="color:red;">❌ Invalid or Fake Product</h2>
     {% endif %}
+
+    {% if shipment %}
+    <p><b>From:</b> {{ shipment.from_location }}</p>
+    <p><b>To:</b> {{ shipment.to_location }}</p>
+    <p><b>Status:</b> {{ shipment.status }}</p>
+{% endif %}
+
 </div>
 
 </body>
